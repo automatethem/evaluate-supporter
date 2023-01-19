@@ -3,6 +3,24 @@ import datasets
 import numpy as np
 import math
 
+from sklearn.metrics import accuracy_score
+import evaluate
+class Accuracy(evaluate.Metric):
+    def _info(self):
+        return evaluate.MetricInfo(
+            description='',
+            citation='',
+            inputs_description='',
+            features=datasets.Features({
+                "predictions": datasets.Value("float32"),
+                "references": datasets.Value("float32")
+            })
+        )
+
+    def _compute(self, predictions, references):
+        accuracy = accuracy_score(references, predictions)
+        return {"accuracy": accuracy}
+    
 # PSNR function: 모델의 출력값과 high-resoultion의 유사도를 측정합니다.
 # PSNR 값이 클수록 좋습니다.
 class Psnr(evaluate.Metric):
