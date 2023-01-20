@@ -43,19 +43,6 @@ class MeanAveragePrecision(evaluate.Metric):
         )
 
     def _compute(self, prediction_boxes, prediction_scores, prediction_labels, reference_boxes, reference_labels):
-        '''
-        prediction_boxes = prediction_boxes
-        prediction_scores = prediction_scores
-        prediction_labels = prediction_labels
-        reference_boxes = reference_boxes
-        reference_labels = reference_labels
-        '''
-        '''
-        confidences = []
-        for confidence in prediction_scores[0]:
-            confidences.append(confidence[confidence.argmax(-1)])
-        confidences = torch.Tensor(confidences) 
-        '''
         preds = [
             dict(
                 boxes=torch.Tensor(prediction_boxes),
