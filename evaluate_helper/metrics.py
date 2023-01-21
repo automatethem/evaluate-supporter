@@ -2,19 +2,24 @@ import evaluate
 import datasets
 import numpy as np
 import math
-
 from sklearn.metrics import accuracy_score
-import evaluate
+
 class Accuracy(evaluate.Metric):
     def _info(self):
         return evaluate.MetricInfo(
             description='',
             citation='',
             inputs_description='',
-            features=datasets.Features({
-                "predictions": datasets.Value("float32"),
-                "references": datasets.Value("float32")
-            })
+            features=datasets.Features(
+                {
+                    "predictions": datasets.Value("float32"),
+                    "references": datasets.Value("float32")
+                } if self.config_name != 'multilabel'
+                else {
+                    "predictions": datasets.Sequence(datasets.Value("float32")),
+                    "references": datasets.Sequence(datasets.Value("float32")),
+                }
+            )
         )
 
     def _compute(self, predictions, references):
