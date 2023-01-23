@@ -91,3 +91,31 @@ class Psnr(evaluate.Metric):
         else:
             psnr = 20 * math.log10(max_val/rmse)
         return {"psnr": psnr}
+
+    
+    
+    
+import evaluate
+import datasets
+import numpy as np
+import math
+from sklearn.metrics import accuracy_score
+
+class Perplexity(evaluate.Metric):
+    def _info(self):
+        return evaluate.MetricInfo(
+            description='',
+            citation='',
+            inputs_description='',
+            features=datasets.Features(
+                {
+                    "predictions": datasets.Value("float32"),
+                    "references": datasets.Value("float32")
+                }
+            )
+        )
+
+    def _compute(self, predictions, references):
+        perplexity = math.exp(loss)
+        ##accuracy = accuracy_score(references, predictions)
+        return {"perplexity": perplexity}
