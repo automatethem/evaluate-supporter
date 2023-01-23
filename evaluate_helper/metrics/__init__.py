@@ -92,16 +92,16 @@ class Psnr(evaluate.Metric):
             psnr = 20 * math.log10(max_val/rmse)
         return {"psnr": psnr}
 
-    
-    
-    
-import evaluate
-import datasets
-import numpy as np
-import math
-from sklearn.metrics import accuracy_score
+#train_metrics = evaluate.combine([
+#    AverageMetrics('perplexity')
+#])
+#train_metrics.add_batch(predictions=[math.exp(loss.item())])
+#train_metrics_value = train_metrics.compute()
+class AverageMetrics(evaluate.Metric):
+    def __init__(self, metrics_name, **kwargs):
+        super().__init__(**kwargs)
+        self.metrics_name = metrics_name
 
-class Perplexity(evaluate.Metric):
     def _info(self):
         return evaluate.MetricInfo(
             description='',
@@ -109,13 +109,11 @@ class Perplexity(evaluate.Metric):
             inputs_description='',
             features=datasets.Features(
                 {
-                    "predictions": datasets.Value("float32"),
-                    "references": datasets.Value("float32")
+                    "predictions": datasets.Value("float32")
                 }
             )
         )
 
-    def _compute(self, predictions, references):
-        perplexity = math.exp(loss)
-        ##accuracy = accuracy_score(references, predictions)
-        return {"perplexity": perplexity}
+    def _compute(self, predictions):
+        average = np.mean((predictions))
+        return {f'{self.metrics_name}': average}
