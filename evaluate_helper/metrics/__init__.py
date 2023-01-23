@@ -5,6 +5,10 @@ import math
 from sklearn.metrics import accuracy_score
 
 class Accuracy(evaluate.Metric):
+    def __init__(self, metrics_name='accuracy', **kwargs):
+        super().__init__(**kwargs)
+        self.metrics_name = metrics_name
+    
     def _info(self):
         return evaluate.MetricInfo(
             description='',
@@ -24,7 +28,7 @@ class Accuracy(evaluate.Metric):
 
     def _compute(self, predictions, references):
         accuracy = accuracy_score(references, predictions)
-        return {"accuracy": accuracy}
+        return {f'{self.metrics_name}': accuracy}
 
 import torch
 import datasets
@@ -33,6 +37,10 @@ from torchmetrics.detection.mean_ap import MeanAveragePrecision as MAP
 #MeanAveragePrecision: 클래스별로 AP (Precision-Recall 곡선의 아래 면적) 를 구한후 그 값을 평균.
 #mAP 값이 클수록 좋음.
 class MeanAveragePrecision(evaluate.Metric):
+    def __init__(self, metrics_name='mean_average_precision', **kwargs):
+        super().__init__(**kwargs)
+        self.metrics_name = metrics_name
+    
     def _info(self):
         return evaluate.MetricInfo(
             description='',
@@ -65,11 +73,15 @@ class MeanAveragePrecision(evaluate.Metric):
         #print(target)
         metric = MAP()
         metric.update(preds, target)
-        return {"map": metric.compute()['map'].item()}
+        return {f'{self.metrics_name}': metric.compute()['map'].item()}
     
 # PSNR function: 모델의 출력값과 high-resoultion의 유사도를 측정합니다.
 # PSNR 값이 클수록 좋습니다.
 class Psnr(evaluate.Metric):
+    def __init__(self, metrics_name='psnr', **kwargs):
+        super().__init__(**kwargs)
+        self.metrics_name = metrics_name
+    
     def _info(self):
         return evaluate.MetricInfo(
             description='',
@@ -90,7 +102,7 @@ class Psnr(evaluate.Metric):
             psnr = 100
         else:
             psnr = 20 * math.log10(max_val/rmse)
-        return {"psnr": psnr}
+        return {f'{self.metrics_name}': psnr}
 
 import evaluate
 import datasets
@@ -101,7 +113,7 @@ import datasets
 #train_metrics.add_batch(predictions=[math.exp(loss.item())])
 #train_metrics_value = train_metrics.compute()
 class AverageMetrics(evaluate.Metric):
-    def __init__(self, metrics_name, **kwargs):
+    def __init__(self, metrics_name='average_metrics', **kwargs):
         super().__init__(**kwargs)
         self.metrics_name = metrics_name
 
