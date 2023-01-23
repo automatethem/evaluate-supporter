@@ -92,6 +92,9 @@ class Psnr(evaluate.Metric):
             psnr = 20 * math.log10(max_val/rmse)
         return {"psnr": psnr}
 
+import evaluate
+import datasets
+
 #train_metrics = evaluate.combine([
 #    AverageMetrics('perplexity')
 #])
