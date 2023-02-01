@@ -1,3 +1,6 @@
+import evaluate
+import numpy as np
+
 # PSNR function: 모델의 출력값과 high-resoultion의 유사도를 측정합니다.
 # PSNR 값이 클수록 좋습니다.
 class Psnr(evaluate.Metric):
