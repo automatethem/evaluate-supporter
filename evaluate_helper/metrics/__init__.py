@@ -4,8 +4,8 @@ import numpy as np
 import math
 from sklearn.metrics import accuracy_score
 
-class Accuracy(evaluate.Metric):
-    def __init__(self, metrics_name='accuracy', **kwargs):
+class CustomAccuracy(evaluate.Metric):
+    def __init__(self, metrics_name='custom_accuracy', **kwargs):
         super().__init__(**kwargs)
         self.metrics_name = metrics_name
     
