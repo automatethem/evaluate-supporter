@@ -5,7 +5,7 @@ import math
 from sklearn.metrics import accuracy_score
 
 class CustomAccuracy(evaluate.Metric):
-    def __init__(self, metrics_name='custom_accuracy', **kwargs):
+    def __init__(self, metrics_name='accuracy', **kwargs):
         super().__init__(**kwargs)
         self.metrics_name = metrics_name
     
