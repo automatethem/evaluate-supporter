@@ -1,3 +1,6 @@
+from .custom_accuracy import *
+
+'''
 import evaluate
 import datasets
 import numpy as np
@@ -29,6 +32,7 @@ class CustomAccuracy(evaluate.Metric):
     def _compute(self, predictions, references):
         accuracy = accuracy_score(references, predictions)
         return {f'{self.metrics_name}': accuracy}
+'''
 
 import torch
 import datasets
