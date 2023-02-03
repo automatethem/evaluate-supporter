@@ -2,6 +2,7 @@ import torch
 import evaluate
 import datasets
 from torchmetrics.detection.mean_ap import MeanAveragePrecision as MAP
+
 #evaluate 패키지에서 아직 지원되지 않는 mAP 를 사용하기 위해 evaluate 패키지의 사용자 정의 매트릭 클래스를 구현
 #MeanAveragePrecision: 클래스별로 AP (Precision-Recall 곡선의 아래 면적) 를 구한후 그 값을 평균.
 #mAP 값이 클수록 좋음.
