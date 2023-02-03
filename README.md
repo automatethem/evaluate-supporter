@@ -1,6 +1,8 @@
 
 # evaluate-helper
 
+Help evaluate package (https://github.com/huggingface/evaluate)
+
 Supported metrics
 <pre>
 import evaluate_helper
