@@ -1,7 +1,7 @@
 
 # evaluate-helper
 
-Helper for evaluate  package (https://github.com/huggingface/evaluate)
+Helper for evaluate package (https://github.com/huggingface/evaluate)
 
 Supported metrics
 <pre>
