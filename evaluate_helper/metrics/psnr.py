@@ -13,10 +13,12 @@ class Psnr(evaluate.Metric):
             description='',
             citation='',
             inputs_description='',
-            features=datasets.Features({
-                "predictions": datasets.Sequence(datasets.Sequence(datasets.Sequence(datasets.Value("float32")))),
-                "references": datasets.Sequence(datasets.Sequence(datasets.Sequence(datasets.Value("float32"))))
-            })
+            features=datasets.Features(
+                {
+                    "predictions": datasets.Sequence(datasets.Sequence(datasets.Sequence(datasets.Value("float32")))),
+                    "references": datasets.Sequence(datasets.Sequence(datasets.Sequence(datasets.Value("float32"))))
+                }
+            )
         )
 
     def _compute(self, predictions, references, max_val=1.):
