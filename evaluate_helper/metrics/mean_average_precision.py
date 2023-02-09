@@ -16,17 +16,19 @@ class MeanAveragePrecision(evaluate.Metric):
             description='',
             citation='',
             inputs_description='',
-            features=datasets.Features({
-                "predictions": {
-                    'boxes': datasets.Sequence(datasets.Sequence(datasets.Value("float32"))),
-                    "scores": datasets.Sequence(datasets.Value("float32")),
-                    "labels": datasets.Sequence(datasets.Value("int32")),
-                },
-                "references": {
-                    'boxes': datasets.Sequence(datasets.Sequence(datasets.Value("float32"))),
-                    "labels": datasets.Sequence(datasets.Value("int32"))
+            features=datasets.Features(
+                {
+                    "predictions": {
+                        'boxes': datasets.Sequence(datasets.Sequence(datasets.Value("float32"))),
+                        "scores": datasets.Sequence(datasets.Value("float32")),
+                        "labels": datasets.Sequence(datasets.Value("int32")),
+                    },
+                    "references": {
+                        'boxes': datasets.Sequence(datasets.Sequence(datasets.Value("float32"))),
+                        "labels": datasets.Sequence(datasets.Value("int32"))
+                    }
                 }
-            })              
+            )              
         )
 
     def _compute(self, predictions, references):
