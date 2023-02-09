@@ -22,7 +22,7 @@ train_metrics_value = train_metrics.compute(prediction_boxes=prediction_boxes, p
 print(train_metrics_value['map']) #0.6000000238418579
 '''
 #evaluate 패키지에서 아직 지원되지 않는 mAP 를 사용하기 위해 evaluate 패키지의 사용자 정의 매트릭 클래스를 구현
-#MeanAveragePrecision: 클래스별로 AP (Precision-Recall 곡선의 아래 면적) 를 구한후 그 값을 평균.
+#MeanAveragePrecision: 클래스별로 Average Precision (Precision-Recall 곡선의 아래쪽 면적) 를 구한후 그 값을 평균.
 #mAP 값이 클수록 좋음.
 class MeanAveragePrecision(evaluate.Metric):
     def __init__(self, metrics_name='mean_average_precision', **kwargs):
