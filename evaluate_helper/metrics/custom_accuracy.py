@@ -16,12 +16,12 @@ class CustomAccuracy(evaluate.Metric):
             inputs_description='',
             features=datasets.Features(
                 {
+                    "predictions": datasets.Sequence(datasets.Value("float32")),
+                    "references": datasets.Sequence(datasets.Value("float32"))
+                } if self.config_name == 'multilabel'
+                else {
                     "predictions": datasets.Value("float32"),
                     "references": datasets.Value("float32")
-                } if self.config_name != 'multilabel'
-                else {
-                    "predictions": datasets.Sequence(datasets.Value("float32")),
-                    "references": datasets.Sequence(datasets.Value("float32")),
                 }
             )
         )
