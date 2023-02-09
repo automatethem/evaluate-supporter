@@ -4,6 +4,7 @@ import datasets
 from torchmetrics.detection.mean_ap import MeanAveragePrecision as MAP
 
 '''
+#https://medium.com/data-science-at-microsoft/how-to-smoothly-integrate-meanaverageprecision-into-your-training-loop-using-torchmetrics-7d6f2ce0a2b3
 import evaluate
 import evaluate_helper
 
@@ -27,7 +28,7 @@ class MeanAveragePrecision(evaluate.Metric):
     def __init__(self, metrics_name='mean_average_precision', **kwargs):
         super().__init__(**kwargs)
         self.metrics_name = metrics_name
-    
+
     def _info(self):
         return evaluate.MetricInfo(
             description='',
@@ -39,7 +40,7 @@ class MeanAveragePrecision(evaluate.Metric):
                 "prediction_labels": datasets.Value("float32"),
                 "reference_boxes": datasets.Sequence(datasets.Value("float32")),
                 "reference_labels": datasets.Value("float32")
-            })            
+            })              
         )
 
     def _compute(self, prediction_boxes, prediction_scores, prediction_labels, reference_boxes, reference_labels):
@@ -60,5 +61,4 @@ class MeanAveragePrecision(evaluate.Metric):
         #print(target)
         metric = MAP()
         metric.update(preds, target)
-        return {f'{self.metrics_name}': metric.compute()['map'].item()}
-    
+        return {"mean_average_precision": metric.compute()['map'].item()}
