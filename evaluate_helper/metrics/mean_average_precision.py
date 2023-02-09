@@ -18,8 +18,11 @@ prediction_labels = [0]
 reference_boxes = [[214.0, 41.0, 562.0, 285.0]]
 reference_labels = [0]
 
-train_metrics_value = train_metrics.compute(prediction_boxes=prediction_boxes, prediction_scores=prediction_scores, prediction_labels=prediction_labels, reference_boxes=reference_boxes, reference_labels=reference_labels)
-print(train_metrics_value['mean_average_precision']) #0.6000000238418579
+#train_metrics_value = train_metrics.compute(prediction_boxes=prediction_boxes, prediction_scores=prediction_scores, prediction_labels=prediction_labels, reference_boxes=reference_boxes, reference_labels=reference_labels)
+#print(train_metrics_value['mean_average_precision']) #0.6000000238418579
+train_metrics.add_batch(prediction_boxes=prediction_boxes, prediction_scores=prediction_scores, prediction_labels=prediction_labels, reference_boxes=reference_boxes, reference_labels=reference_labels)
+train_metrics_value = train_metrics.compute()
+print(train_metrics_value['mean_average_precision']) #
 '''
 #evaluate 패키지에서 아직 지원되지 않는 mAP 를 사용하기 위해 evaluate 패키지의 사용자 정의 매트릭 클래스를 구현
 #MeanAveragePrecision: 클래스별로 Average Precision (Precision-Recall 곡선의 아래쪽 면적) 를 구한후 그 값을 평균.
