@@ -10,6 +10,7 @@ setuptools.setup(
 	version='0.0.1',
 	description='Evaluate helper',
 	long_description=open('README.md').read(),
+	long_description_content_type='text/markdown',
 	author='Sang Ki Kwon',
 	url='https://github.com/automatethem/evaluate-helper',
 	install_requires=requirements(),
