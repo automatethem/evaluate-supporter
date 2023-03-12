@@ -1,14 +1,14 @@
 
-# evaluate-helper
+# evaluate-supporter
 
 Helper for evaluate package (https://github.com/huggingface/evaluate)
 
 Supported metrics
 <pre>
-import evaluate_helper
+import evaluate_supporter
 
-evaluate_helper.metrics.CustomAccuracy
-evaluate_helper.metrics.MeanAveragePrecision
-evaluate_helper.metrics.Psnr
-evaluate_helper.metrics.AverageMetrics
+evaluate_supporter.metrics.CustomAccuracy
+evaluate_supporter.metrics.MeanAveragePrecision
+evaluate_supporter.metrics.Psnr
+evaluate_supporter.metrics.AverageMetrics
 </pre>
