@@ -6,13 +6,13 @@ def requirements():
         return f.read().splitlines()
 
 setuptools.setup(
-	name='evaluate-helper',
+	name='evaluate-supporter',
 	version='0.0.1',
-	description='Evaluate helper',
+	description='Evaluate supporter',
 	long_description=open('README.md').read(),
 	long_description_content_type='text/markdown',
 	author='Sang Ki Kwon',
-	url='https://github.com/automatethem/evaluate-helper',
+	url='https://github.com/automatethem/evaluate-supporter',
 	install_requires=requirements(),
 	author_email='automatethem@gmail.com',
 	license='MIT',
