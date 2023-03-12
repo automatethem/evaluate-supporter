@@ -1,5 +1,9 @@
-
 # evaluate-supporter
+
+https://pypi.org/project/evaluate-supporter
+<pre>
+pip install evaluate-supporter
+</pre>
 
 Helper for evaluate package (https://github.com/huggingface/evaluate)
 
